@@ -18,10 +18,12 @@ DEVICE = (
 def setup_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--loglevel", type=str, choices=["INFO", "DEBUG"],
-                        default="INFO", help="")
+                        default="INFO", help="logging level")
     parser.add_argument("--num_epochs", type=int, default=10, help="number of epochs to train")
-    parser.add_argument("--data_dir", type=str, required=True, help="")
-    parser.add_argument("--num_layers", type=int, required=True, help="")
+    parser.add_argument("--data_dir", type=str, required=True, help="directory to store MNIST")
+    parser.add_argument("--num_layers", type=int, required=True, help="number of layers in encoder/decoder")
+    parser.add_argument("--lr", type=float, default=1e-2, help="learning rate")
+    parser.add_argument("--batch_size", type=int, default=32, help="batch size during training")
     return parser
 
 
@@ -110,7 +112,7 @@ def main():
         download=True,
         transform=torchvision.transforms.ToTensor()
     )
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size=32, shuffle=True)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=True)
     sample = dataset[0]
     image, _ = sample
     dim = list(image.flatten().size())[0]
@@ -121,9 +123,9 @@ def main():
     loss_fn = nn.MSELoss()
     optimizer = torch.optim.SGD(
         model.parameters(), 
-        lr=1e-2
+        lr=args.lr
     )
-    train(dataloader, model, loss_fn, optimizer)
+    train(dataloader, model, loss_fn, optimizer, args.num_epochs)
 
 
 if __name__ == "__main__":

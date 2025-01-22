@@ -1,4 +1,4 @@
-# MNIST Autoencoder in PyTorch
+# Autoencoder in PyTorch
 
 This repository contains a PyTorch script (autoencoder.py) for training a basic autoencoder on the MNIST dataset of handwritten digits.
 

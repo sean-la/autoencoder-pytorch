@@ -85,7 +85,7 @@ def train(dataloader, model, loss_fn, optimizer, num_epochs=10, log_iterations=1
             X = X.to(DEVICE) 
 
             optimizer.zero_grad()
-            # Compute prediction error
+            # Compute reconstruction error
             decoding = model(X)
             loss = loss_fn(decoding, X)
 

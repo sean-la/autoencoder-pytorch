@@ -40,7 +40,8 @@ class AutoEncoder(nn.Module):
             encoder_layers.append(
                 nn.Linear(input_dim, output_dim)
             )
-            encoder_layers.append(nn.ReLU())
+            if i < num_layers - 2:
+                encoder_layers.append(nn.ReLU())
 
         self._encoder = nn.Sequential(*encoder_layers)
 
@@ -54,6 +55,8 @@ class AutoEncoder(nn.Module):
             )
             if i > 0:
                 decoder_layers.append(nn.ReLU())
+            else:
+                decoder_layers.append(nn.Sigmoid())
 
         self._decoder = nn.Sequential(*decoder_layers)
 
@@ -118,7 +121,7 @@ def main():
     loss_fn = nn.MSELoss()
     optimizer = torch.optim.SGD(
         model.parameters(), 
-        lr=1e-3
+        lr=1e-2
     )
     train(dataloader, model, loss_fn, optimizer)
 

@@ -19,9 +19,9 @@ def setup_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--loglevel", type=str, choices=["INFO", "DEBUG"],
                         default="INFO", help="logging level")
-    parser.add_argument("--num_epochs", type=int, default=10, help="number of epochs to train")
     parser.add_argument("--data_dir", type=str, required=True, help="directory to store MNIST")
-    parser.add_argument("--num_layers", type=int, required=True, help="number of layers in encoder/decoder")
+    parser.add_argument("--num_epochs", type=int, default=10, help="number of epochs to train")
+    parser.add_argument("--num_layers", type=int, default=2, required=True, help="number of layers in encoder/decoder")
     parser.add_argument("--lr", type=float, default=1e-2, help="learning rate")
     parser.add_argument("--batch_size", type=int, default=32, help="batch size during training")
     return parser

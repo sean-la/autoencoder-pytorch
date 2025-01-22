@@ -18,7 +18,7 @@ The script can be run from the command line using the following options:
 --num_epochs NUM_EPOCHS: Number of epochs to train the autoencoder. Defaults to 10.
 --data_dir DATA_DIR: Directory containing the MNIST dataset (downloaded automatically if not provided).
 --num_layers NUM_LAYERS: Number of hidden layers in the encoder and decoder (defaults to 2).
---lr LR: Learning rate for the optimizer (defaults to 0.001).
+--lr LR: Learning rate for the optimizer (defaults to 1e-2)
 --batch_size BATCH_SIZE: Batch size during training (defaults to 32).
 ```
 
